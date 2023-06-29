@@ -1,11 +1,11 @@
 .profile-pic {
   position: relative;
-  max-width: 600px;
-  max-height: 600px;
+  max-width: 500px;
+  max-height: 500px;
   width: auto;
   height: auto;
   overflow: hidden;
-  /* display: inline-block; */
+   /*display: inline-block;*/
 
 
   /* background-size: cover;  */
@@ -29,7 +29,7 @@
 }
 
 .social {
-  padding-top: 10px;
+  padding-top: 1px;
   margin: 0 auto;
   width: auto;
   text-align: inherit;
@@ -226,7 +226,7 @@ h3 {
 }
 
 #intro.section {
-  background-color: #8a8a70;
+  background-color: #52524e;
   position: relative;
 }
 
@@ -258,7 +258,7 @@ h3 {
 
 .overlay {
   padding-left: 30px;
-  background-color: #8a8a70;
+  background-color: #676765;
   height: 100%;
   left: 0;
   position: absolute;
@@ -514,9 +514,9 @@ small {
 
 @media (max-width: 600px) {
   h2 {
-    font-size: 22px;
+    font-size: 18px;
     line-height: 200%;
-    margin: 30px 0 0;
+    margin: 15px 0 0;
   }
   #intro.section .container *:not(span) {
     padding: 0;
