@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vidit Singh | Portfolio</title>
+    <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGY0NmU1IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNCA4TDYgNkExIDEgMCAwMSAxMCA4VjE2QTEgMSAwIDAxIDE2IDE4SDE4TDIwIDIwTTIwIDE2TDYgMTZNMTIgMjBMMjAgNCIvPjwvc3ZnPg==" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base styles */
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        /* Animated gradient background */
+        .gradient-bg {
+            background: linear-gradient(270deg, #0a0e27, #1f2261, #0a0e27);
+            background-size: 600% 600%;
+            animation: gradientAnim 20s ease infinite;
+        }
+        @keyframes gradientAnim {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        /* Overlay nav */
+        .nav-overlay { display: none; }
+        .nav-overlay.active { display: block; }
+        .nav-overlay nav a { display: block; font-size: 2rem; margin: 1rem 0; }
+        /* Scroll reveal */
+        .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        /* Logo carousel */
+        .carousel { display: flex; gap: 2rem; animation: scrollLeft 20s linear infinite; }
+        .carousel:hover { animation-play-state: paused; }
+        @keyframes scrollLeft {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+    </style>
+</head>
+<body class="gradient-bg text-white">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full p-4 flex justify-between items-center z-50">
+    <div class="text-2xl font-bold cursor-pointer" id="logo">VIDIT SINGH</div>
+    <button id="nav-toggler" aria-label="Toggle menu" class="space-y-1">
+        <span class="block w-8 h-0.5 bg-white"></span>
+        <span class="block w-8 h-0.5 bg-white"></span>
+        <span class="block w-8 h-0.5 bg-white"></span>
+    </button>
+</header>
+<!-- Nav Overlay -->
+<div id="navOverlay" class="nav-overlay fixed inset-0 bg-black bg-opacity-90 flex flex-col justify-center items-center">
+    <nav class="text-center">
+        <a href="#hero" class="hover:text-indigo-400 transition">Home</a>
+        <a href="#about" class="hover:text-indigo-400 transition">About</a>
+        <a href="#work" class="hover:text-indigo-400 transition">Work</a>
+        <a href="#projects" class="hover:text-indigo-400 transition">Projects</a>
+        <a href="#contact" class="hover:text-indigo-400 transition">Contact</a>
+    </nav>
+</div>
+<!-- Hero -->
+<section id="hero" class="h-screen flex flex-col justify-center items-center text-center px-4 reveal visible">
+    <h1 class="text-6xl md:text-8xl font-extrabold mb-4">VIDIT SINGH</h1>
+    <p class="text-xl md:text-2xl opacity-80">Full Stack Developer & Software Engineer</p>
+    <div class="mt-8 animate-bounce opacity-75">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+    </div>
+</section>
+<!-- About -->
+<section id="about" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto reveal">
+        <h2 class="text-4xl font-bold mb-6 border-b-2 border-white inline-block">01. About</h2>
+        <p class="mt-4 leading-relaxed text-lg opacity-90">I’m a full-stack developer specializing in building exceptional digital experiences. Currently, I’m focused on developing responsive web applications and bringing designs to life through code.</p>
+    </div>
+</section>
+<!-- Work -->
+<section id="work" class="py-20 px-4 bg-white bg-opacity-10">
+    <div class="max-w-4xl mx-auto reveal">
+        <h2 class="text-4xl font-bold mb-6 border-b-2 border-white inline-block">02. Work</h2>
+        <p class="mt-4 leading-relaxed text-lg opacity-90">I work at National Indemnity Company delivering enterprise-level applications using C#, ASP.NET, Azure DevOps, and cloud services.</p>
+    </div>
+</section>
+<!-- Logo Carousel -->
+<section class="py-12 px-4 overflow-hidden">
+    <div class="carousel">
+        <img src="/logos/logo1.png" alt="Logo 1" class="h-16 opacity-80" />
+        <img src="/logos/logo2.png" alt="Logo 2" class="h-16 opacity-80" />
+        <img src="/logos/logo3.png" alt="Logo 3" class="h-16 opacity-80" />
+        <img src="/logos/logo4.png" alt="Logo 4" class="h-16 opacity-80" />
+        <!-- Repeat for seamless scroll -->
+        <img src="/logos/logo1.png" alt="Logo 1" class="h-16 opacity-80" />
+        <img src="/logos/logo2.png" alt="Logo 2" class="h-16 opacity-80" />
+    </div>
+</section>
+<!-- Projects -->
+<section id="projects" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="reveal bg-white bg-opacity-10 p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-2">Model-Cart Meta-Framework</h3>
+            <p class="opacity-80">A machine learning meta-framework with explainability and human-in-the-loop, published and showcased at conferences.</p>
+        </div>
+        <div class="reveal bg-white bg-opacity-10 p-6 rounded-lg">
+            <h3 class="text-2xl font-bold mb-2">Event Management System</h3>
+            <p class="opacity-80">Winning solution for NICO Hackathon 2024, built with ASP.NET Core and Azure.</p>
+        </div>
+    </div>
+</section>
+<!-- Contact / Footer -->
+<footer id="contact" class="py-16 px-4 bg-black bg-opacity-50 text-center reveal">
+    <h2 class="text-3xl font-bold mb-4">Get In Touch</h2>
+    <p class="opacity-80">Omaha, NE | <a href="mailto:vidit.sing09@gmail.com" class="underline">vidit.sing09@gmail.com</a></p>
+    <div class="mt-6 flex justify-center space-x-6 text-2xl">
+        <a href="https://www.linkedin.com/in/vidit-singh-004461aa/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <i class="fab fa-linkedin"></i>
+        </a>
+    </div>
+    <p class="mt-8 opacity-60">© 2025 Vidit Singh.</p>
+</footer>
+<script>
+    // Toggle nav overlay
+    const toggler = document.getElementById('nav-toggler');
+    const overlay = document.getElementById('navOverlay');
+    toggler.addEventListener('click', () => overlay.classList.toggle('active'));
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+        e.preventDefault(); document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+        overlay.classList.remove('active');
+    }));
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => entries.forEach(e => e.isIntersecting && e.target.classList.add('visible')),{ threshold: 0.1 });
+    reveals.forEach(r => io.observe(r));
+</script>
+</body>
+</html>

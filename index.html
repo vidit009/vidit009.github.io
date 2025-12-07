@@ -1,449 +1,1220 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vidit Singh - Portfolio</title>
-  <!-- Favicon for browser tab icon (Abstract Developer Icon as base64 SVG) -->
-  <link rel="icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGY0NmU1IiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNCA4TDYgNkExIDEgMCAwMSAxMCA4VjE2QTEgMSAwIDAxIDE2IDE4SDE4TDIwIDIwTTIwIDE2TDYgMTZNMTIgMjBMMjAgNCIvPjwvc3ZnPg==">
-  <!-- Tailwind CSS CDN -->
+  <title>Vidit Singh - Full Stack Developer</title>
+  <!-- Favicon -->
+  <link rel="icon"
+    href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjM2NmYxIiBzdHJva2Utd2lkdGg9IjEuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cGF0aCBkPSJNNCA4TDYgNkExIDEgMCAwMSAxMCA4VjE2QTEgMSAwIDAxIDE2IDE4SDE4TDIwIDIwTTIwIDE2TDYgMTZNMTIgMjBMMjAgNCIvPjwvc3ZnPg==">
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+    rel="stylesheet">
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['Fira Code', 'monospace'],
+          },
+          colors: {
+            dark: {
+              900: '#0f172a',
+              800: '#1e293b',
+              700: '#334155',
+            },
+            primary: {
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            accent: {
+              400: '#38bdf8',
+            }
+          },
+          animation: {
+            'blob': 'blob 7s infinite',
+            'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+          },
+          keyframes: {
+            blob: {
+              '0%': { transform: 'translate(0px, 0px) scale(1)' },
+              '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+              '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+              '100%': { transform: 'translate(0px, 0px) scale(1)' },
+            },
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    }
+  </script>
+
   <style>
     body {
       font-family: 'Inter', sans-serif;
-      overflow-x: hidden; /* Prevent horizontal scroll due to animations */
-    }
-    /* Custom animations for initial load */
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .animate-fade-in {
-      animation: fadeIn 1s ease-out forwards;
-    }
-    .animate-slide-up {
-      animation: slideUp 1s ease-out forwards;
-    }
-    .animate-fade-in-delay {
-      animation: fadeIn 1.5s ease-out 0.5s forwards;
-      opacity: 0; /* Start invisible */
+      scroll-behavior: smooth;
     }
 
-    /* Animated gradient background for hero section */
-    .animated-gradient-bg {
-      background: linear-gradient(270deg, #4f46e5, #6366f1, #818cf8);
-      background-size: 600% 600%;
-      animation: AnimateGradient 15s ease infinite;
-      transform-style: preserve-3d; /* Needed for 3D transforms on hover */
-      perspective: 1000px; /* Needed for 3D transforms on hover */
-      transition: transform 0.1s ease-out; /* Smooth transition for hover effect */
+    .glass-nav {
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    @keyframes AnimateGradient {
-      0%{background-position:0% 50%}
-      50%{background-position:100% 50%}
-      100%{background-position:0% 50%}
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    /* Scroll reveal animations */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    .text-gradient {
+      background: linear-gradient(to right, #6366f1, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .scroll-reveal.is-revealed {
-      opacity: 1;
-      transform: translateY(0);
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
     }
 
-    /* Skill bar animation */
-    .skill-bar-inner {
-      width: 0%; /* Initial width */
-      transition: width 1.5s ease-out; /* Smooth transition for filling */
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
     }
-    .skill-bar.is-revealed .skill-bar-inner {
-      /* Width will be set dynamically by JS for actual skill level */
+
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+    .glass-capsule {
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5), inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    }
+
+    @keyframes shimmer {
+      0% {
+        transform: translateX(-150%);
+      }
+
+      100% {
+        transform: translateX(150%);
+      }
     }
   </style>
 </head>
-<body class="min-h-screen bg-gray-100 text-gray-800">
-<!-- Navigation -->
-<nav class="bg-white shadow-md p-4 sticky top-0 z-50">
-  <div class="container mx-auto flex flex-wrap justify-between items-center">
-    <!-- Updated Brand Section with Custom SVG Icon and Responsiveness -->
-    <a href="#hero" class="flex items-center text-indigo-700 hover:text-indigo-800 transition duration-300 ease-in-out group" aria-label="Vidit Singh - Developer Portfolio">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" class="w-10 h-10 mr-2 transition duration-300 ease-in-out group-hover:rotate-12">
-        <defs>
-          <linearGradient id="gradientNavIcon" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4f46e5" />
-            <stop offset="100%" stop-color="#818cf8" />
-          </linearGradient>
-        </defs>
-        <!-- Code-like brackets -->
-        <path d="M20 30 L40 50 L20 70 M80 30 L60 50 L80 70"/>
-        <!-- Initials "VS" -->
-        <text x="50" y="55" font-family="Inter, sans-serif" font-size="30" font-weight="bold" text-anchor="middle" fill="url(#gradientNavIcon)">VS</text>
-      </svg>
-      <span class="text-xl sm:text-2xl font-bold">VIDIT SINGH</span>
-      <span class="sr-only">Vidit Singh</span>
-    </a>
-    <div class="flex flex-wrap space-x-2 sm:space-x-4">
-      <a href="#summary" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Summary</a>
-      <a href="#achievements" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Achievements</a>
-      <a href="#experience" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Experience</a>
-      <a href="#projects" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Projects</a>
-      <a href="#education" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Education</a>
-      <a href="#skills" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Skills</a>
-      <a href="#certifications" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Certifications</a>
-      <a href="#contact" class="text-gray-600 hover:bg-indigo-50 hover:text-indigo-700 transition duration-300 ease-in-out px-3 py-2 rounded-md">Contact</a>
-    </div>
-  </div>
-</nav>
 
-<!-- Main Content -->
-<main class="container mx-auto px-4 py-8">
-  <!-- Hero Section -->
-  <section id="hero" class="animated-gradient-bg text-white p-12 rounded-lg shadow-xl mb-12 text-center transform hover:scale-105 transition-transform duration-500">
-    <h2 class="text-5xl font-extrabold mb-4 animate-fade-in">VIDIT SINGH</h2>
-    <p class="text-2xl font-light mb-6 animate-slide-up">Software Engineer, National Indemnity Company</p>
-    <p class="text-lg animate-fade-in-delay">Data Engineer & Software Developer with extensive experience in software development, and implementing technology solutions to meet business needs. Skilled in designing and implementing solutions to enhance user experience and business outcomes. Proven track record in agile development, project delivery, and cross-functional collaboration.</p>
-  </section>
+<body class="bg-dark-900 text-gray-100 antialiased selection:bg-primary-500 selection:text-white">
+  <!-- Navigation -->
+  <!-- Floating Capsule Navigation -->
+  <nav class="fixed top-6 left-1/2 transform -translate-x-1/2 z-50" id="navbar">
+    <div class="glass-capsule px-2 py-2 rounded-full flex items-center gap-1">
 
-  <!-- Summary -->
-  <section id="summary" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Summary</h3>
-    <p class="text-lg leading-relaxed">
-      Data Engineer & Software Developer with extensive experience in software development, and implementing technology solutions
-      to meet business needs. Skilled in designing and implementing solutions to enhance user experience and business outcomes.
-      Proven track record in agile development, project delivery, and cross-functional collaboration.
-    </p>
-  </section>
+      <!-- Brand Orb -->
+      <a href="#hero"
+        class="w-10 h-10 rounded-full bg-gradient-to-tr from-primary-600 to-accent-400 flex items-center justify-center shadow-lg shadow-primary-500/30 hover:scale-110 transition-transform duration-300 group">
+        <span class="font-bold text-white font-mono text-sm group-hover:animate-pulse">VS</span>
+      </a>
 
-  <!-- Achievements -->
-  <section id="achievements" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Achievements</h3>
-    <ul class="list-disc list-inside space-y-3 text-lg leading-relaxed">
-      <li>NICO Hackathon Project Champion 2024: Contributed as a member of Team Codeincognito to the development of a winning solution for the Event Management System.</li>
-      <li>Published the research paper "Model-Cart: A Machine Learning Meta-Framework with Explainability and Human-in-the-Loop" in the proceedings of the International Conference on Information Technology-New Generations (2025).</li>
-      <li>Successfully showcased the Model-Cart Project through a poster and live demonstration at the Academic Data Science Alliance Annual Meeting 2023, University of Texas at San Antonio.</li>
-      <li>Delivered an impactful poster presentation and lightning talk on the Model-Cart Project at the Bridging Big Data (BBD) 2023 Workshop.</li>
-      <li>Highlighted the Model-Cart project through a well-received poster presentation at UNO's Annual Student Research and Creative Activity Fair.</li>
-      <li>Honored with the Special Initiative Award for leading the critical automation of the manual job setup process for mailing Bill of Lading, Inventory Status, and Inward-Outward Movement Reports, a project essential to reducing IT support burden, boosting QA consistency, and enhancing the accuracy and reliability of vital operational data for the company.</li>
-      <li>Applause Award for best release manager by configuring delivery pipeline for QA server and standing up for all the deployments, making them successful with zero rollbacks and failure.</li>
-      <li>Recognized with the On-the-Spot Award for exceptional leadership in managing and delivering two high-priority projects concurrently, ensuring on-time completion with zero defects across UT, UAT, and QA—demonstrating strong project management and operational excellence while driving cost savings and reinforcing the company's and team's reputation for reliability and quality.</li>
-      <li>On the Spot Award for innovative debugging methods in Lansa code on AS400, demonstrating exceptional technical expertise.</li>
-      <li>Service & Commitment Award for consistently delivering error-free projects over a span of 5+ years.</li>
-      <li>Selected by fellow Trainee Associates, Technical and Business Skill leads for TCS LIREL Roll of Honor. (LIREL - Leading change, Integrity, Respect for individual, Excellence, Learning and sharing)</li>
-    </ul>
-  </section>
-
-  <!-- Work Experience -->
-  <section id="experience" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Work Experience</h3>
-
-    <!-- National Indemnity Company - Software Developer II -->
-    <div class="mb-8 flex items-center">
-      <img src="https://placehold.co/40x40/6366f1/ffffff?text=NICO" alt="National Indemnity Company Logo" class="w-10 h-10 rounded-full mr-3">
-      <div>
-        <h4 class="text-2xl font-bold text-gray-700">Software Engineer</h4>
-        <p class="text-indigo-600">National Indemnity Company | May 2024 - Present</p>
+      <!-- Desktop Menu -->
+      <div class="hidden md:flex items-center px-4 gap-1">
+        <a href="#about"
+          class="nav-pill px-4 py-2 rounded-full text-xs font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider">About</a>
+        <a href="#experience"
+          class="nav-pill px-4 py-2 rounded-full text-xs font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider">Exp</a>
+        <a href="#projects"
+          class="nav-pill px-4 py-2 rounded-full text-xs font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider">Work</a>
+        <a href="#skills"
+          class="nav-pill px-4 py-2 rounded-full text-xs font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all uppercase tracking-wider">Skills</a>
       </div>
-    </div>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Led the adoption and execution of Behavior-Driven Development (BDD) practices across NICO Vehicle Telematics, LAPS, and NicoRate 8, integrating agile methodologies and utilizing ASP.NET, C#, Azure DevOps CI/CD pipelines, and Azure Cloud to ensure scalable and testable application delivery.</li>
-      <li>Spearheaded a cross-functional rollout of Microsoft Entra authentication for Azure Function apps - piloted in TaxAllocator and scaled to NewYorkBarcodes and IDCardsService. Additionally, authored comprehensive documentation to support knowledge sharing and ensure team alignment on each step of the end-to-end Microsoft Entra authentication implementation process.</li>
-      <li>Supported migration efforts in the FireWork project to improve system efficiency by transitioning report printing processes to IDB print services.</li>
-      <li>Coordinated cross-functional collaboration to seamlessly integrate new features into existing systems, employing technologies suchs as ASP.NET, C#, and Azure Cloud infrastructure.</li>
-    </ul>
 
-    <!-- National Indemnity Company - Software Engineering Intern -->
-    <div class="mb-8 flex items-center mt-8">
-      <img src="https://placehold.co/40x40/6366f1/ffffff?text=NICO" alt="National Indemnity Company Logo" class="w-10 h-10 rounded-full mr-3">
-      <div>
-        <h4 class="text-2xl font-bold text-gray-700">Software Engineering Intern</h4>
-        <p class="text-indigo-600">National Indemnity Company | September 2023 - May 2024</p>
+      <!-- CTA -->
+      <a href="#contact"
+        class="hidden md:flex px-5 py-2.5 rounded-full bg-white text-black text-xs font-bold uppercase tracking-wider hover:bg-gray-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+        Contact
+      </a>
+
+      <!-- Mobile Menu Button -->
+      <button
+        class="md:hidden w-10 h-10 flex items-center justify-center text-gray-300 hover:text-white rounded-full hover:bg-white/10 transition-colors"
+        id="mobile-menu-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div
+      class="absolute top-full left-0 right-0 mt-2 p-2 rounded-2xl glass-capsule md:hidden hidden flex-col gap-1 origin-top transform transition-all duration-300 scale-95 opacity-0"
+      id="mobile-menu">
+      <a href="#about"
+        class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 text-center">About</a>
+      <a href="#experience"
+        class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 text-center">Experience</a>
+      <a href="#projects"
+        class="block px-4 py-3 rounded-xl text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 text-center">Projects</a>
+      <a href="#contact"
+        class="block px-4 py-3 rounded-xl text-sm font-bold text-black bg-white hover:bg-gray-200 text-center mt-1">Contact
+        Me</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="w-full">
+    <!-- Hero Section -->
+    <style>
+      /* Infinite Horizon Styles */
+      :root {
+        --void-bg: #000000;
+        --star-white: #ffffff;
+        --nebula-blue: #4f46e5;
+        --orb-glow: #60a5fa;
+      }
+
+      .infinite-bg {
+        background-color: var(--void-bg);
+        position: relative;
+        overflow: hidden;
+        cursor: none;
+        /* Custom cursor */
+      }
+
+      canvas#horizon-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+      }
+
+      /* Custom Cursor */
+      .cursor-dot,
+      .cursor-outline {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        z-index: 9999;
+        pointer-events: none;
+      }
+
+      .cursor-dot {
+        width: 8px;
+        height: 8px;
+        background-color: white;
+      }
+
+      .cursor-outline {
+        width: 40px;
+        height: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        transition: width 0.2s, height 0.2s, background-color 0.2s;
+      }
+
+      body:hover .cursor-outline {
+        width: 30px;
+        height: 30px;
+      }
+
+      /* Typography */
+      .horizon-title {
+        font-family: 'Inter', sans-serif;
+        font-weight: 900;
+        letter-spacing: -0.05em;
+        background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.4) 100%);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        mix-blend-mode: difference;
+      }
+
+      .horizon-subtitle {
+        font-family: 'Fira Code', monospace;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.6);
+      }
+
+      /* Orb Dock Navigation */
+      .orb-dock-container {
+        position: absolute;
+        bottom: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 50;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100px;
+      }
+
+      .orb-core {
+        width: 60px;
+        height: 60px;
+        background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9), rgba(96, 165, 250, 0.4) 40%, rgba(79, 70, 229, 0.8) 100%);
+        border-radius: 50%;
+        box-shadow: 0 0 30px rgba(96, 165, 250, 0.6), inset 0 0 20px rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        position: relative;
+        z-index: 2;
+        animation: orb-breathe 4s infinite ease-in-out;
+      }
+
+      .orb-core:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 50px rgba(96, 165, 250, 0.8), inset 0 0 30px rgba(255, 255, 255, 0.8);
+      }
+
+      @keyframes orb-breathe {
+
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 30px rgba(96, 165, 250, 0.6);
+        }
+
+        50% {
+          transform: scale(1.05);
+          box-shadow: 0 0 40px rgba(96, 165, 250, 0.7);
+        }
+      }
+
+      .orb-nav-items {
+        position: absolute;
+        display: flex;
+        gap: 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.4s ease;
+        transform: scale(0.8);
+      }
+
+      .orb-dock-container:hover .orb-nav-items {
+        opacity: 1;
+        pointer-events: auto;
+        transform: scale(1);
+        gap: 120px;
+        /* Push items out */
+      }
+
+      .nav-item {
+        color: white;
+        font-family: 'Fira Code', monospace;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-decoration: none;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s;
+        white-space: nowrap;
+      }
+
+      .nav-item:hover {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.4);
+        transform: translateY(-5px);
+      }
+
+      /* Scroll Hint */
+      .scroll-hint {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.3);
+        font-family: 'Fira Code', monospace;
+        letter-spacing: 0.2em;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      .orb-dock-container:hover~.scroll-hint {
+        opacity: 1;
+      }
+    </style>
+
+    <!-- Custom Cursor Elements -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+
+    <!-- Hero Section -->
+    <section id="hero"
+      class="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden infinite-bg">
+      <canvas id="horizon-canvas"></canvas>
+
+      <!-- Main Content - Full Width -->
+      <div class="relative z-10 w-full text-center flex flex-col items-center justify-center pointer-events-none">
+
+        <h1 class="text-[12vw] leading-none horizon-title mix-blend-difference animate-fade-in-up">
+          VIDIT SINGH
+        </h1>
+
+        <div class="mt-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+          <p class="text-sm md:text-xl horizon-subtitle">
+            Full Stack Architect // Creative Developer
+          </p>
+        </div>
+
       </div>
-    </div>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Contributed as a member of Team CodeIncognito to the development of a winning solution for the Event Management System in the NICO Hackathon 2024.</li>
-      <li>Improved printing functionality for NicoRate 8 by incorporating fillable PDF printing for the Just Drive flyer, replacing crystal reports to enhance user experience and streamline workflows.</li>
-      <li>Ensured seamless integration of new features into existing systems through collaboration with a cross-functional team under an agile framework.</li>
-      <li>Executed comprehensive testing and debugging processes to uphold high standards of software reliability, performance, and quality.</li>
-    </ul>
 
-    <!-- Bridge Project - Graduate Research Assistant -->
-    <div class="mb-8 flex items-center mt-8">
-      <img src="https://placehold.co/40x40/a78bfa/ffffff?text=UNO" alt="University of Nebraska at Omaha Logo" class="w-10 h-10 rounded-full mr-3">
-      <div>
-        <h4 class="text-2xl font-bold text-gray-700">Graduate Research Assistant</h4>
-        <p class="text-indigo-600">Bridge Project (National Infrastructure Analysis) - University of Nebraska at Omaha | October 2022 - May 2024</p>
+      <!-- Orb Dock Navigation -->
+      <div class="orb-dock-container">
+        <div class="orb-nav-items">
+          <a href="#projects" class="nav-item">View Projects</a>
+          <a href="#contact" class="nav-item">Contact Me</a>
+        </div>
+        <div class="orb-core" aria-label="Navigation Core"></div>
       </div>
-    </div>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Developed and implemented machine learning pipelines utilizing MLflow, pandas, NumPy, Scikit-learn, Seaborn, Matplotlib, and Jupyter Notebook to ensure explainable model outputs based on NBI and NBE datasets.</li>
-      <li>Designed a REST API using the Django REST framework to enable user-centric data access and improved web-based data visualization through VueJS, Vuetify, D3.js, and Tableau for increased interpretability.</li>
-      <li>Published the research paper "Model-Cart: A Machine Learning Meta-Framework with Explainability and Human-in-the-Loop" in the proceedings of the International Conference on Information Technology-New Generations (2025).</li>
-      <li>Presented the "Model Cart" tool at the 2023 ADSA Annual Meeting under the Bridge Project initiative to showcase innovative data-driven strategies for infrastructure analysis.</li>
-      <li>Advanced strategic solutions for bridge health monitoring within the National Infrastructure Analysis Project (NIA), enhancing U.S. infrastructure management practices by leveraging expertise in software development and machine learning tailored to large-scale datasets.</li>
-    </ul>
 
-    <!-- Tata Consultancy Services - Data Engineer -->
-    <div class="mb-8 flex items-center mt-8">
-      <img src="https://placehold.co/40x40/374151/ffffff?text=TCS" alt="Tata Consultancy Services Logo" class="w-10 h-10 rounded-full mr-3">
-      <div>
-        <h4 class="text-2xl font-bold text-gray-700">Data Engineer</h4>
-        <p class="text-indigo-600">Tata Consultancy Services | January 2022 - October 2022</p>
+      <div class="scroll-hint">HOVER THE CORE</div>
+
+      <script>
+        // Custom Cursor Logic
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+
+        window.addEventListener('mousemove', (e) => {
+          const posX = e.clientX;
+          const posY = e.clientY;
+
+          cursorDot.style.left = `${posX}px`;
+          cursorDot.style.top = `${posY}px`;
+
+          // Smooth follow for outline
+          cursorOutline.animate({
+            left: `${posX}px`,
+            top: `${posY}px`
+          }, { duration: 500, fill: "forwards" });
+        });
+
+        // Interactive Horizon Particle System
+        const canvas = document.getElementById('horizon-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+
+        let particles = [];
+        const particleCount = 400;
+
+        class Star {
+          constructor() {
+            this.reset();
+            this.z = Math.random() * width; // Start at random depth
+          }
+
+          reset() {
+            this.x = (Math.random() - 0.5) * width * 2;
+            this.y = (Math.random() - 0.5) * height * 2;
+            this.z = width; // Start far away
+            this.pz = this.z;
+            this.size = Math.random() * 2;
+          }
+
+          update(speed) {
+            this.z -= speed;
+            if (this.z < 1) {
+              this.reset();
+              this.z = width;
+              this.pz = this.z;
+            }
+          }
+
+          draw() {
+            const x = (this.x / this.z) * width + width / 2;
+            const y = (this.y / this.z) * height + height / 2;
+
+            const size = (1 - this.z / width) * 4 * this.size;
+
+            // Trail effect
+            const px = (this.x / this.pz) * width + width / 2;
+            const py = (this.y / this.pz) * height + height / 2;
+
+            this.pz = this.z;
+
+            if (x < 0 || x > width || y < 0 || y > height) return;
+
+            const alpha = (1 - this.z / width);
+
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            ctx.lineWidth = size;
+            ctx.moveTo(px, py);
+            ctx.lineTo(x, y);
+            ctx.stroke();
+          }
+        }
+
+        function init() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+          particles = [];
+          for (let i = 0; i < particleCount; i++) {
+            particles.push(new Star());
+          }
+        }
+
+        let speed = 10;
+        let targetSpeed = 10;
+
+        function animate() {
+          requestAnimationFrame(animate);
+
+          // Clear with trail effect
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.2)';
+          ctx.fillRect(0, 0, width, height);
+
+          // Smooth speed transition
+          speed += (targetSpeed - speed) * 0.05;
+
+          particles.forEach(p => {
+            p.update(speed);
+            p.draw();
+          });
+        }
+
+        // Speed up on mouse down or hover orb
+        window.addEventListener('mousedown', () => targetSpeed = 50);
+        window.addEventListener('mouseup', () => targetSpeed = 10);
+
+        const orb = document.querySelector('.orb-core');
+        orb.addEventListener('mouseenter', () => {
+          targetSpeed = 2; // Slow down time
+          cursorOutline.style.transform = 'translate(-50%, -50%) scale(1.5)';
+          cursorOutline.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
+        });
+
+        orb.addEventListener('mouseleave', () => {
+          targetSpeed = 10;
+          cursorOutline.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursorOutline.style.backgroundColor = 'transparent';
+        });
+
+        window.addEventListener('resize', init);
+        init();
+        animate();
+      </script>
+    </section>
+
+    <!-- Summary / About Section -->
+    <section id="about" class="py-20 bg-dark-900">
+      <div class="container mx-auto px-6">
+        <div class="max-w-4xl mx-auto">
+          <h2 class="text-3xl md:text-4xl font-bold mb-8 text-center"><span class="text-gradient">About Me</span></h2>
+          <div class="glass-card p-8 rounded-2xl shadow-xl">
+            <p class="text-lg text-gray-300 leading-relaxed mb-6">
+              Data Engineer & Software Developer with extensive experience in software development.
+              <span class="inline-flex items-center baseline font-bold text-primary-400 mx-1 cursor-default">
+                <i class="fas fa-medal text-yellow-400 mr-2"></i>
+                Certified Guidewire Jutro Developer
+              </span> specializing in creating seamless digital experiences. Skilled in designing and implementing
+              technology solutions to enhance user experience and business outcomes. Proven track record in agile
+              development, project delivery, and cross-functional collaboration.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              <div class="text-center p-4 rounded-xl bg-dark-800/50 border border-gray-800">
+                <div class="text-3xl font-bold text-primary-500 mb-2">10+</div>
+                <div class="text-sm text-gray-400">Years Experience</div>
+              </div>
+              <!-- <div class="text-center p-4 rounded-xl bg-dark-800/50 border border-gray-800">
+                <div class="text-3xl font-bold text-accent-400 mb-2">10+</div>
+                <div class="text-sm text-gray-400">Projects Completed</div>
+              </div> -->
+              <div class="text-center p-4 rounded-xl bg-dark-800/50 border border-gray-800">
+                <div class="text-3xl font-bold text-purple-500 mb-2">5+</div>
+                <div class="text-sm text-gray-400">Awards Won</div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Facilitated the migration of an on-premises data warehouse to Google Cloud Platform, improving scalability and system reliability.</li>
-      <li>Led schema conversion processes between source and target databases, ensuring precise data mapping and transformation in alignment with project requirements.</li>
-      <li>Implemented applications for initial load and change data capture, enabling real-time synchronization and maintaining high standards of data integrity.</li>
-      <li>Managed diverse databases suchs as Postgres, MySQL, Oracle, and Cloud SQL - Postgres, optimizing storage capabilities and retrieval efficiency.</li>
-      <li>Utilized tools like Striim and SQLines to streamline data integration and migration processes while minimizing operational downtime.</li>
-    </ul>
-
-    <!-- Tata Consultancy Services - Software Developer -->
-    <div class="flex items-center mt-8">
-      <img src="https://placehold.co/40x40/374151/ffffff?text=TCS" alt="Tata Consultancy Services Logo" class="w-10 h-10 rounded-full mr-3">
-      <div>
-        <h4 class="text-2xl font-bold text-gray-700">Software Developer</h4>
-        <p class="text-indigo-600">Tata Consultancy Services | December 2016 - December 2021</p>
       </div>
-    </div>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Designed and maintained VersaCold's P2 Warehouse Management System, ensuring alignment with client technical and business requirements for optimal software functionality.</li>
-      <li>Established efficient deployment processes as Deployment Manager for QA, DR, and Production Servers, facilitating seamless software updates and minimizing system downtime.</li>
-      <li>Developed customized software solutions tailored to industry-specific needs within Insurance (AXA Asia) and Logistics & Warehousing Solutions (VersaCold).</li>
-      <li>Demonstrated advanced proficiency in programming languages including RPGLE (free format), CLP, Lansa, and New Look Suite to deliver robust application solutions.</li>
-      <li>Utilized DB2 and MySQL databases for effective data storage, management, and retrieval while ensuring data integrity across systems.</li>
-    </ul>
-  </section>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects" class="bg-white p-8 rounded-lg shadow-md mb-8 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Projects</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <!-- Project 1: Model-Cart -->
-      <div class="bg-gray-50 p-6 rounded-lg shadow-sm transform hover:scale-[1.02] transition-transform duration-300">
-        <h4 class="text-2xl font-bold text-gray-700 mb-2">Model-Cart: A Machine Learning Meta-Framework</h4>
-        <p class="text-gray-600 mb-4">Published research paper, showcased at conferences and fairs.</p>
-        <p class="text-lg">Developed a machine learning meta-framework with explainability and human-in-the-loop capabilities. This project involved building robust ML pipelines and designing a REST API for data access, along with web-based visualizations.</p>
-        <ul class="list-disc list-inside mt-4 text-sm text-gray-500">
-          <li>Technologies: MLflow, pandas, NumPy, Scikit-learn, Seaborn, Matplotlib, Jupyter Notebook, Django REST framework, VueJS, Vuetify, D3.js, Tableau.</li>
-        </ul>
-        <div class="mt-6 flex flex-wrap gap-4">
-          <a href="https://link.springer.com/chapter/10.1007/978-3-031-89063-5_27" target="_blank" rel="noopener noreferrer" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-full shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">
-            View Publication
+    <!-- Experience -->
+    <section id="experience" class="py-20 bg-dark-800">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-16 text-center"><span class="text-gradient">Professional
+            Journey</span></h2>
+
+        <div class="relative max-w-4xl mx-auto">
+          <!-- Timeline Line -->
+          <div class="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-1 bg-gray-800"></div>
+
+          <!-- Experience Item 1 -->
+          <div class="relative mb-12 md:mb-20">
+            <div class="flex flex-col md:flex-row items-center w-full">
+              <div class="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors relative">
+                  <h3 class="text-xl font-bold text-gray-100">Software Engineer</h3>
+                  <p class="text-primary-400 font-medium mb-2">National Indemnity Company</p>
+                  <p class="text-gray-400 text-sm mb-4">May 2024 - Present</p>
+                  <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm leading-relaxed text-left">
+                    <li>Led the adoption and execution of Behavior-Driven Development (BDD) practices across NICO
+                      Vehicle Telematics, LAPS, and NicoRate 8, integrating agile methodologies and utilizing ASP.NET,
+                      C#, Azure DevOps CI/CD pipelines, and Azure Cloud to ensure scalable and testable application
+                      delivery.</li>
+                    <li>Spearheaded a cross-functional rollout of Microsoft Entra authentication for Azure Function apps
+                      - piloted in TaxAllocator and scaled to NewYorkBarcodes and IDCardsService. Additionally, authored
+                      comprehensive documentation to support knowledge sharing and ensure team alignment.</li>
+                    <li>Supported migration efforts in the FireWork project to improve system efficiency by
+                      transitioning report printing processes to IDB print services.</li>
+                    <li>Coordinated cross-functional collaboration to seamlessly integrate new features into existing
+                      systems, employing technologies such as ASP.NET, C#, and Azure Cloud infrastructure.</li>
+                  </ul>
+                  <!-- Arrow for desktop -->
+                  <div
+                    class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 w-4 h-4 bg-dark-800 border-t border-r border-gray-700 rotate-45">
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-primary-600 rounded-full border-4 border-dark-900 z-10 flex items-center justify-center shadow-lg shadow-primary-500/50">
+                <div class="w-2 h-2 bg-white rounded-full"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-8"></div>
+            </div>
+          </div>
+
+          <!-- Experience Item 2 -->
+          <div class="relative mb-12 md:mb-20">
+            <div class="flex flex-col md:flex-row items-center w-full">
+              <div class="w-full md:w-1/2 md:pr-8"></div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-dark-700 rounded-full border-4 border-dark-900 z-10 flex items-center justify-center">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
+                <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors relative">
+                  <h3 class="text-xl font-bold text-gray-100">Software Engineering Intern</h3>
+                  <p class="text-primary-400 font-medium mb-2">National Indemnity Company</p>
+                  <p class="text-gray-400 text-sm mb-4">Sep 2023 - May 2024</p>
+                  <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm leading-relaxed">
+                    <li>Contributed as a member of Team CodeIncognito to the development of a winning solution for the
+                      Event Management System in the NICO Hackathon 2024.</li>
+                    <li>Improved printing functionality for NicoRate 8 by incorporating fillable PDF printing for the
+                      Just Drive flyer, replacing crystal reports to enhance user experience and streamline workflows.
+                    </li>
+                    <li>Ensured seamless integration of new features into existing systems through collaboration with a
+                      cross-functional team under an agile framework.</li>
+                    <li>Executed comprehensive testing and debugging processes to uphold high standards of software
+                      reliability, performance, and quality.</li>
+                  </ul>
+                  <!-- Arrow for desktop -->
+                  <div
+                    class="hidden md:block absolute top-1/2 -left-3 transform -translate-y-1/2 w-4 h-4 bg-dark-800 border-b border-l border-gray-700 rotate-45">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 3 -->
+          <div class="relative mb-12 md:mb-20">
+            <div class="flex flex-col md:flex-row items-center w-full">
+              <div class="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors relative">
+                  <h3 class="text-xl font-bold text-gray-100">Graduate Research Assistant</h3>
+                  <p class="text-primary-400 font-medium mb-2">University of Nebraska at Omaha</p>
+                  <p class="text-gray-400 text-sm mb-4">Oct 2022 - May 2024</p>
+                  <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm leading-relaxed text-left">
+                    <li>Developed and implemented machine learning pipelines utilizing MLflow, pandas, NumPy,
+                      Scikit-learn, Seaborn, Matplotlib, and Jupyter Notebook to ensure explainable model outputs based
+                      on NBI and NBE datasets.</li>
+                    <li>Designed a REST API using the Django REST framework to enable user-centric data access and
+                      improved web-based data visualization through VueJS, Vuetify, D3.js, and Tableau.</li>
+                    <li>Published the research paper "Model-Cart: A Machine Learning Meta-Framework with Explainability
+                      and Human-in-the-Loop" in the proceedings of the International Conference on Information
+                      Technology-New Generations (2025).</li>
+                    <li>Presented the "Model Cart" tool at the 2023 ADSA Annual Meeting under the Bridge Project
+                      initiative to showcase innovative data-driven strategies for infrastructure analysis.</li>
+                    <li>Advanced strategic solutions for bridge health monitoring within the National Infrastructure
+                      Analysis Project (NIA).</li>
+                  </ul>
+                  <!-- Arrow for desktop -->
+                  <div
+                    class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 w-4 h-4 bg-dark-800 border-t border-r border-gray-700 rotate-45">
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-dark-700 rounded-full border-4 border-dark-900 z-10 flex items-center justify-center">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-8"></div>
+            </div>
+          </div>
+
+          <!-- Experience Item 4 -->
+          <div class="relative mb-12 md:mb-20">
+            <div class="flex flex-col md:flex-row items-center w-full">
+              <div class="w-full md:w-1/2 md:pr-8"></div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-dark-700 rounded-full border-4 border-dark-900 z-10 flex items-center justify-center">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-8 md:text-left mb-4 md:mb-0">
+                <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors relative">
+                  <h3 class="text-xl font-bold text-gray-100">Data Engineer</h3>
+                  <p class="text-primary-400 font-medium mb-2">Tata Consultancy Services</p>
+                  <p class="text-gray-400 text-sm mb-4">Jan 2022 - Oct 2022</p>
+                  <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm leading-relaxed">
+                    <li>Facilitated the migration of an on-premises data warehouse to Google Cloud Platform, improving
+                      scalability and system reliability.</li>
+                    <li>Led schema conversion processes between source and target databases, ensuring precise data
+                      mapping and transformation in alignment with project requirements.</li>
+                    <li>Implemented applications for initial load and change data capture, enabling real-time
+                      synchronization and maintaining high standards of data integrity.</li>
+                    <li>Managed diverse databases such as Postgres, MySQL, Oracle, and Cloud SQL - Postgres, optimizing
+                      storage capabilities and retrieval efficiency.</li>
+                    <li>Utilized tools like Striim and SQLines to streamline data integration and migration processes
+                      while minimizing operational downtime.</li>
+                  </ul>
+                  <!-- Arrow for desktop -->
+                  <div
+                    class="hidden md:block absolute top-1/2 -left-3 transform -translate-y-1/2 w-4 h-4 bg-dark-800 border-b border-l border-gray-700 rotate-45">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experience Item 5 -->
+          <div class="relative">
+            <div class="flex flex-col md:flex-row items-center w-full">
+              <div class="w-full md:w-1/2 md:pr-8 md:text-right mb-4 md:mb-0">
+                <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors relative">
+                  <h3 class="text-xl font-bold text-gray-100">Software Developer</h3>
+                  <p class="text-primary-400 font-medium mb-2">Tata Consultancy Services</p>
+                  <p class="text-gray-400 text-sm mb-4">Dec 2016 - Dec 2021</p>
+                  <ul class="list-disc list-inside space-y-2 text-gray-300 text-sm leading-relaxed text-left">
+                    <li>Designed and maintained VersaCold's P2 Warehouse Management System, ensuring alignment with
+                      client technical and business requirements for optimal software functionality.</li>
+                    <li>Established efficient deployment processes as Deployment Manager for QA, DR, and Production
+                      Servers, facilitating seamless software updates and minimizing system downtime.</li>
+                    <li>Developed customized software solutions tailored to industry-specific needs within Insurance
+                      (AXA Asia) and Logistics & Warehousing Solutions (VersaCold).</li>
+                    <li>Demonstrated advanced proficiency in programming languages including RPGLE (free format), CLP,
+                      Lansa, and New Look Suite to deliver robust application solutions.</li>
+                    <li>Utilized DB2 and MySQL databases for effective data storage, management, and retrieval while
+                      ensuring data integrity across systems.</li>
+                  </ul>
+                  <!-- Arrow for desktop -->
+                  <div
+                    class="hidden md:block absolute top-1/2 -right-3 transform -translate-y-1/2 w-4 h-4 bg-dark-800 border-t border-r border-gray-700 rotate-45">
+                  </div>
+                </div>
+              </div>
+              <div
+                class="absolute left-0 md:left-1/2 transform -translate-x-1/2 w-8 h-8 bg-dark-700 rounded-full border-4 border-dark-900 z-10 flex items-center justify-center">
+                <div class="w-2 h-2 bg-gray-400 rounded-full"></div>
+              </div>
+              <div class="w-full md:w-1/2 md:pl-8"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements -->
+    <section id="achievements" class="py-20 bg-dark-900">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="text-gradient">Achievements</span>
+        </h2>
+        <div class="glass-card p-8 rounded-2xl shadow-xl max-w-4xl mx-auto">
+          <ul class="space-y-4 text-gray-300 leading-relaxed">
+            <li class="flex items-start">
+              <i class="fas fa-trophy text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span><strong class="text-gray-100">NICO Hackathon Project Champion 2025:</strong> Contributed as a
+                member of the Team Two Pennies And A Paper Clip. Created a MUI app that captures collision and
+                reports the first notice of loss.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-trophy text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span><strong class="text-gray-100">NICO Hackathon Project Champion 2024:</strong> Contributed as a member
+                of Team Codeincognito to the development of a winning solution for the Event Management System.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-scroll text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span>Published the research paper "Model-Cart: A Machine Learning Meta-Framework with Explainability and
+                Human-in-the-Loop" in the proceedings of the International Conference on Information Technology-New
+                Generations (2025).</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-chalkboard-teacher text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span>Successfully showcased the Model-Cart Project through a poster and live demonstration at the
+                Academic Data Science Alliance Annual Meeting 2023, University of Texas at San Antonio.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-award text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span>Honored with the Special Initiative Award for leading the critical automation of the manual job
+                setup process, reducing IT support burden and boosting QA consistency.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-star text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span>Applause Award for best release manager by configuring delivery pipeline for QA server and standing
+                up for all the deployments with zero rollbacks.</span>
+            </li>
+            <li class="flex items-start">
+              <i class="fas fa-medal text-primary-500 mt-1.5 mr-3 flex-shrink-0"></i>
+              <span>Recognized with the On-the-Spot Award for exceptional leadership in managing and delivering two
+                high-priority projects concurrently with zero defects.</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="py-20 bg-dark-800">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="text-gradient">Education</span></h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div class="glass-card p-8 rounded-2xl hover:bg-dark-700 transition-colors relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+              <i class="fas fa-graduation-cap text-9xl text-primary-500"></i>
+            </div>
+            <h4 class="text-2xl font-bold text-gray-100 mb-2">Masters: Management Information Systems</h4>
+            <p class="text-primary-400 font-medium mb-4">University of Nebraska at Omaha</p>
+            <p class="text-gray-400 text-sm">August 2022 - May 2024</p>
+          </div>
+
+          <div class="glass-card p-8 rounded-2xl hover:bg-dark-700 transition-colors relative overflow-hidden group">
+            <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+              <i class="fas fa-university text-9xl text-primary-500"></i>
+            </div>
+            <h4 class="text-2xl font-bold text-gray-100 mb-2">Bachelors Of Technology in Computer Science</h4>
+            <p class="text-primary-400 font-medium mb-4">Dr. APJ Abdul Kalam University, India</p>
+            <p class="text-gray-400 text-sm">August 2012 - August 2016</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-20 bg-dark-900">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="text-gradient">Featured
+            Projects</span></h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 0: ClaimsCrashDetection -->
+          <div
+            class="glass-card rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col">
+            <div
+              class="h-48 bg-gradient-to-br from-red-900 to-dark-800 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+              <div class="absolute inset-0 bg-red-500/10 group-hover:bg-red-500/20 transition-colors"></div>
+              <i
+                class="fas fa-car-crash text-6xl text-red-400/50 group-hover:text-red-400 transition-colors transform group-hover:scale-110 duration-500"></i>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-gray-100 mb-2">ClaimsCrashDetection App</h3>
+              <p class="text-gray-400 text-sm mb-4 flex-grow">
+                NICO Hackathon Project Champion 2025. A mobile application that detects vehicle crashes using G-force
+                levels and automatically generates a First Notice of Loss (FNOL) without delay, streamlining the claims
+                process.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs font-mono text-red-400 bg-red-500/10 px-2 py-1 rounded">MUI</span>
+                <span class="text-xs font-mono text-red-400 bg-red-500/10 px-2 py-1 rounded">React Native</span>
+                <span class="text-xs font-mono text-red-400 bg-red-500/10 px-2 py-1 rounded">Node.js</span>
+                <span class="text-xs font-mono text-red-400 bg-red-500/10 px-2 py-1 rounded">Sensors API</span>
+              </div>
+              <div class="flex flex-col gap-2 mt-auto">
+                <span class="inline-flex items-center text-gray-500 cursor-not-allowed font-medium">
+                  Hackathon Winner 2025 <i class="fas fa-trophy ml-2 text-yellow-500"></i>
+                </span>
+                <span class="inline-flex items-center text-gray-500 cursor-not-allowed font-medium">
+                  Internal Project <i class="fas fa-lock ml-2"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 1: Model-Cart -->
+          <div
+            class="glass-card rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col">
+            <div
+              class="h-48 bg-gradient-to-br from-primary-900 to-dark-800 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+              <div class="absolute inset-0 bg-primary-500/10 group-hover:bg-primary-500/20 transition-colors"></div>
+              <i
+                class="fas fa-brain text-6xl text-primary-400/50 group-hover:text-primary-400 transition-colors transform group-hover:scale-110 duration-500"></i>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-gray-100 mb-2">Model-Cart: ML Meta-Framework</h3>
+              <p class="text-gray-400 text-sm mb-4 flex-grow">
+                Developed a machine learning meta-framework with explainability and human-in-the-loop capabilities. This
+                project involved building robust ML pipelines and designing a REST API for data access, along with
+                web-based visualizations.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">MLflow</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">pandas</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">NumPy</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">Scikit-learn</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">Django REST</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">VueJS</span>
+                <span class="text-xs font-mono text-primary-400 bg-primary-500/10 px-2 py-1 rounded">D3.js</span>
+              </div>
+              <a href="https://link.springer.com/chapter/10.1007/978-3-031-89063-5_27" target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center text-primary-400 hover:text-primary-300 font-medium transition-colors mt-auto">
+                View Publication <i class="fas fa-external-link-alt ml-2"></i>
+              </a>
+            </div>
+          </div>
+
+          <!-- Project 2: Event Management System -->
+          <div
+            class="glass-card rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col">
+            <div
+              class="h-48 bg-gradient-to-br from-purple-900 to-dark-800 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+              <div class="absolute inset-0 bg-purple-500/10 group-hover:bg-purple-500/20 transition-colors"></div>
+              <i
+                class="fas fa-calendar-check text-6xl text-purple-400/50 group-hover:text-purple-400 transition-colors transform group-hover:scale-110 duration-500"></i>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-gray-100 mb-2">Event Management System</h3>
+              <p class="text-gray-400 text-sm mb-4 flex-grow">
+                Contributed to the development of a winning solution for an Event Management System during the NICO
+                Hackathon. This project highlighted skills in rapid prototyping, full-stack development, and
+                collaborative agile practices to deliver a functional system under tight deadlines.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">ASP.NET</span>
+                <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">C#</span>
+                <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">Azure DevOps</span>
+                <span class="text-xs font-mono text-purple-400 bg-purple-500/10 px-2 py-1 rounded">Azure Cloud</span>
+              </div>
+              <div class="flex flex-col gap-2 mt-auto">
+                <span class="inline-flex items-center text-gray-500 cursor-not-allowed font-medium">
+                  Hackathon Winner 2024 <i class="fas fa-trophy ml-2 text-yellow-500"></i>
+                </span>
+                <span class="inline-flex items-center text-gray-500 cursor-not-allowed font-medium">
+                  Internal Project <i class="fas fa-lock ml-2"></i>
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: FireWork Migration -->
+          <div
+            class="glass-card rounded-xl overflow-hidden hover:shadow-2xl hover:shadow-primary-500/20 transition-all duration-300 group hover:-translate-y-2 flex flex-col">
+            <div
+              class="h-48 bg-gradient-to-br from-accent-900 to-dark-800 flex items-center justify-center relative overflow-hidden flex-shrink-0">
+              <div class="absolute inset-0 bg-accent-400/10 group-hover:bg-accent-400/20 transition-colors"></div>
+              <i
+                class="fas fa-exchange-alt text-6xl text-accent-400/50 group-hover:text-accent-400 transition-colors transform group-hover:scale-110 duration-500"></i>
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <h3 class="text-xl font-bold text-gray-100 mb-2">FireWork Project Migration</h3>
+              <p class="text-gray-400 text-sm mb-4 flex-grow">
+                Supported migration efforts in the FireWork project, specifically by transitioning report printing
+                processes to IDB print services to enhance overall system efficiency. This involved analyzing existing
+                systems, designing new integration points, and ensuring data integrity during the migration process.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-6">
+                <span class="text-xs font-mono text-accent-400 bg-accent-500/10 px-2 py-1 rounded">ASP.NET</span>
+                <span class="text-xs font-mono text-accent-400 bg-accent-500/10 px-2 py-1 rounded">C#</span>
+                <span class="text-xs font-mono text-accent-400 bg-accent-500/10 px-2 py-1 rounded">Azure Cloud</span>
+              </div>
+              <span class="inline-flex items-center text-gray-500 cursor-not-allowed font-medium mt-auto">
+                Internal Project <i class="fas fa-lock ml-2"></i>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications -->
+    <section id="certifications" class="py-20 bg-dark-800">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="text-gradient">Certifications</span>
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+          <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover:bg-dark-700 transition-colors">
+            <div class="mt-1 text-primary-500"><i class="fas fa-layer-group text-xl"></i></div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-100">Guidewire Certified Associate - Jutro Developer</h4>
+              <p class="text-gray-400 text-sm">Guidewire Education | Olos</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover:bg-dark-700 transition-colors">
+            <div class="mt-1 text-primary-500"><i class="fas fa-certificate text-xl"></i></div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-100">Core Programming - C, C++, MySQL</h4>
+              <p class="text-gray-400 text-sm">NIIT - India | Certificate No-14DLZZZZZ2192</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover:bg-dark-700 transition-colors">
+            <div class="mt-1 text-primary-500"><i class="fas fa-cloud text-xl"></i></div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-100">Cloud Computing</h4>
+              <p class="text-gray-400 text-sm">MSME - Ministry of Micro, Small and Medium Enterprises, India</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover:bg-dark-700 transition-colors">
+            <div class="mt-1 text-primary-500"><i class="fas fa-database text-xl"></i></div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-100">Associate Database Fundamentals</h4>
+              <p class="text-gray-400 text-sm">Microsoft Technology Associate | No-F510-0906</p>
+            </div>
+          </div>
+          <div class="glass-card p-6 rounded-xl flex items-start space-x-4 hover:bg-dark-700 transition-colors">
+            <div class="mt-1 text-primary-500"><i class="fas fa-code-branch text-xl"></i></div>
+            <div>
+              <h4 class="text-lg font-bold text-gray-100">Associate Software Development Fundamentals</h4>
+              <p class="text-gray-400 text-sm">Microsoft Technology Associate | No-F452-3542</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills & Expertise -->
+    <section id="skills" class="py-20 bg-dark-800 relative overflow-hidden">
+      <!-- Background Decoration -->
+      <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-primary-500/10 rounded-full blur-3xl"></div>
+      <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-accent-400/10 rounded-full blur-3xl"></div>
+
+      <div class="container mx-auto px-6 relative z-10">
+        <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center"><span class="text-gradient">Technical
+            Arsenal</span></h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Frontend -->
+          <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors group">
+            <div
+              class="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-code text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-100 mb-4">Frontend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Vue.js</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">React</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Tailwind
+                CSS</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">D3.js</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">HTML5/CSS3</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Guidewire
+                Jutro</span>
+            </div>
+          </div>
+
+          <!-- Backend -->
+          <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors group">
+            <div
+              class="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-server text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-100 mb-4">Backend</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">C# /
+                ASP.NET</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Python</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Django</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Node.js</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">REST
+                APIs</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">APD</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Policy
+                Center</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Claim
+                Center</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Billing
+                Center</span>
+            </div>
+          </div>
+
+          <!-- Database & Cloud -->
+          <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors group">
+            <div
+              class="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-database text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-100 mb-4">Data & Cloud</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Azure</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">AWS</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">PostgreSQL</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">MySQL</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">DB2</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Jutro Web
+                Apps</span>
+            </div>
+          </div>
+
+          <!-- DevOps & Tools -->
+          <div class="glass-card p-6 rounded-xl hover:border-primary-500/50 transition-colors group">
+            <div
+              class="w-12 h-12 bg-primary-500/20 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+              <i class="fas fa-tools text-primary-400 text-xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-100 mb-4">DevOps & ML</h3>
+            <div class="flex flex-wrap gap-2">
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Azure
+                DevOps</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">CI/CD</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Git</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">MLflow</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Scikit-learn</span>
+              <span
+                class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">pandas</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">NumPy</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">Django
+                REST</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">VueJS</span>
+              <span class="px-3 py-1 text-sm bg-dark-900 text-gray-300 rounded-full border border-gray-700">D3.js</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer / Contact -->
+  <footer id="contact" class="bg-dark-900 border-t border-gray-800 pt-20 pb-10">
+    <div class="container mx-auto px-6">
+      <div class="flex flex-col md:flex-row justify-between items-center mb-16">
+        <div class="mb-8 md:mb-0 text-center md:text-left">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4 text-gray-100">Let's Work Together</h2>
+          <p class="text-gray-400 text-lg max-w-md">
+            I'm currently available for freelance work. If you have a project that needs some
+            creative touch, let's get in touch.
+          </p>
+        </div>
+        <div class="flex flex-col space-y-4">
+          <a href="mailto:vidit.singh09@gmail.com"
+            class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-3 hover:bg-primary-600 hover:text-white transition-all group">
+            <i class="fas fa-envelope text-primary-500 group-hover:text-white text-xl"></i>
+            <span class="font-medium text-gray-300 group-hover:text-white">vidit.singh09@gmail.com</span>
+          </a>
+          <a href="tel:+14024018401"
+            class="glass-card px-8 py-4 rounded-xl flex items-center justify-center space-x-3 hover:bg-primary-600 hover:text-white transition-all group">
+            <i class="fas fa-phone text-primary-500 group-hover:text-white text-xl"></i>
+            <span class="font-medium text-gray-300 group-hover:text-white">+1 402-401-8401</span>
           </a>
         </div>
       </div>
 
-      <!-- Project 2: Event Management System (NICO Hackathon 2024) -->
-      <div class="bg-gray-50 p-6 rounded-lg shadow-sm transform hover:scale-[1.02] transition-transform duration-300">
-        <h4 class="text-2xl font-bold text-gray-700 mb-2">Event Management System</h4>
-        <p class="text-gray-600 mb-4">Winning solution for NICO Hackathon 2024.</p>
-        <p class="text-lg">Contributed to the development of a winning solution for an Event Management System during the NICO Hackathon. This project highlighted skills in rapid prototyping, full-stack development, and collaborative agile practices to deliver a functional system under tight deadlines.</p>
-        <ul class="list-disc list-inside mt-4 text-sm text-gray-500">
-          <li>Technologies: (Based on resume context) ASP.NET, C#, Azure DevOps, Azure Cloud.</li>
-        </ul>
-        <!-- Buttons removed as requested -->
-      </div>
-
-      <!-- Project 3: FireWork Project -->
-      <div class="bg-gray-50 p-6 rounded-lg shadow-sm transform hover:scale-[1.02] transition-transform duration-300">
-        <h4 class="text-2xl font-bold text-gray-700 mb-2">FireWork Project Migration</h4>
-        <p class="text-gray-600 mb-4">Improved system efficiency through report printing migration.</p>
-        <p class="text-lg">Supported migration efforts in the FireWork project, specifically by transitioning report printing processes to IDB print services to enhance overall system efficiency. This involved analyzing existing systems, designing new integration points, and ensuring data integrity during the migration process.</p>
-        <ul class="list-disc list-inside mt-4 text-sm text-gray-500">
-          <li>Technologies: (Based on resume context) ASP.NET, C#, Azure Cloud.</li>
-        </ul>
-        <!-- Buttons removed as requested -->
-      </div>
-    </div>
-  </section>
-    </div>
-  </section>
-
-  <!-- Education -->
-  <section id="education" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Education</h3>
-    <div class="mb-4">
-      <h4 class="text-2xl font-bold text-gray-700">Masters: Management Information Systems</h4>
-      <p class="text-indigo-600">University of Nebraska at Omaha | August 2022 - May 2024</p>
-    </div>
-    <div>
-      <h4 class="text-2xl font-bold text-gray-700">Bachelors Of Technology in Computer Science</h4>
-      <p class="text-indigo-600">Dr. APJ Abdul Kalam University, India | August 2012 - August 2016</p>
-    </div>
-  </section>
-
-  <!-- Skills & Expertise -->
-  <section id="skills" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Skills & Expertise</h3>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      <!-- Skill items with animated bars -->
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Python</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="95"></div>
+      <div class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div class="text-gray-500 text-sm mb-4 md:mb-0">
+          &copy; 2024 Vidit Singh. All rights reserved.
         </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">JavaScript (Vue.js, D3.js)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="90"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">C# / ASP.NET</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="85"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Database Management (DB2, MySQL, Postgres)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="90"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Cloud Platforms (GCP, Azure, AWS)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="88"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">DevOps / CI/CD (Azure DevOps)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="80"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Machine Learning (MLflow, Scikit-learn)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="85"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Agile Methodologies</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="95"></div>
-        </div>
-      </div>
-      <div class="skill-bar p-2 rounded-lg bg-gray-50 shadow-sm">
-        <p class="font-medium text-gray-700">Data Migration (Striim, SQLines)</p>
-        <div class="w-full bg-gray-200 rounded-full h-2.5">
-          <div class="bg-indigo-600 h-2.5 rounded-full skill-bar-inner" data-skill-level="90"></div>
+        <div class="flex space-x-6">
+          <a href="https://www.linkedin.com/in/vidit-singh-004461aa/" target="_blank" rel="noopener noreferrer"
+            class="text-gray-400 hover:text-primary-400 transition-colors text-xl">
+            <i class="fab fa-linkedin"></i>
+          </a>
+          <a href="https://github.com/vidit009" target="_blank" rel="noopener noreferrer" class="text-gray-400
+            hover:text-primary-400 transition-colors text-xl">
+            <i class="fab fa-github"></i>
+          </a>
+          <!-- <a href="#" class="text-gray-400 hover:text-primary-400 transition-colors text-xl">
+            <i class="fab fa-twitter"></i>
+          </a> -->
         </div>
       </div>
     </div>
-  </section>
+  </footer>
 
-  <!-- Certifications -->
-  <section id="certifications" class="bg-white p-8 rounded-lg shadow-md mb-8 transform hover:scale-[1.01] transition-transform duration-300 scroll-reveal">
-    <h3 class="text-3xl font-semibold text-indigo-700 mb-6 border-b-2 border-indigo-200 pb-2">Certifications</h3>
-    <ul class="list-disc list-inside space-y-2 text-lg">
-      <li>Core Programming - C, C++, MySQL | NIIT - India | Certificate No-14DLZZZZZ2192</li>
-      <li>Cloud Computing | MSME - Ministry of Micro, Small and Medium Enterprises, India</li>
-      <li>Associate Database Fundamentals | Microsoft Technology Associate | Certification No-F510-0906</li>
-      <li>Associate Software Development Fundamentals | Microsoft Technology Associate | Certification No-F452-3542</li>
-    </ul>
-  </section>
-</main>
-
-<!-- Footer -->
-<footer id="contact" class="bg-gray-800 text-white p-8 text-center rounded-t-lg">
-  <h3 class="text-2xl font-semibold mb-4">Contact Me</h3>
-  <p class="text-lg mb-2">Omaha, NE</p>
-  <p class="text-lg mb-2">Phone: +1 402-401-8401</p>
-  <p class="text-lg mb-2">Email: <a href="mailto:vidit.singh09@gmail.com" class="text-indigo-400 hover:underline">vidit.sing09@gmail.com</a></p>
-  <p class="text-lg">LinkedIn: <a href="https://www.linkedin.com/in/vidit-singh-004461aa/" target="_blank" rel="noopener noreferrer" class="text-indigo-400 hover:underline">linkedin.com/in/vidit-singh-00446laa</a></p>
-  <p class="mt-6 text-sm text-gray-500">
-    © 2024 Vidit Singh. All rights reserved.
-  </p>
-</footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth'
+            });
+            // Update URL without jump
+            history.pushState(null, null, targetId);
+          }
         });
       });
-    });
 
-    // Scroll reveal animation for sections
-    const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-    const skillBars = document.querySelectorAll('.skill-bar');
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
 
-    const observerOptions = {
-      root: null, // relative to the viewport
-      rootMargin: '0px',
-      threshold: 0.1 // 10% of the element must be visible
-    };
+      if (mobileMenuBtn && mobileMenu) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+        });
+      }
 
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-revealed');
-          // If it's a skill bar, trigger the animation
-          if (entry.target.classList.contains('skill-bar')) {
-            const innerBar = entry.target.querySelector('.skill-bar-inner');
-            if (innerBar) {
-              const skillLevel = innerBar.dataset.skillLevel || '0';
-              innerBar.style.width = `${skillLevel}%`;
-            }
-          }
-          observer.unobserve(entry.target); // Stop observing once revealed
+      // Navbar Glass Effect on Scroll
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('shadow-lg');
+          navbar.style.background = 'rgba(15, 23, 42, 0.9)';
+        } else {
+          navbar.classList.remove('shadow-lg');
+          navbar.style.background = 'rgba(15, 23, 42, 0.7)';
         }
       });
-    }, observerOptions);
 
-    scrollRevealElements.forEach(el => {
-      observer.observe(el);
-    });
+      // Intersection Observer for Fade In Animation
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
 
-    skillBars.forEach(bar => {
-      observer.observe(bar);
-    });
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate-fade-in-up');
+            entry.target.style.opacity = '1';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
 
-    // Hero section mouse parallax/tilt effect
-    const heroSection = document.getElementById('hero');
-    if (heroSection) {
-      heroSection.addEventListener('mousemove', (e) => {
-        const rect = heroSection.getBoundingClientRect();
-        const centerX = rect.left + rect.width / 2;
-        const centerY = rect.top + rect.height / 2;
-
-        const mouseX = e.clientX;
-        const mouseY = e.clientY;
-
-        const rotateX = ((centerY - mouseY) / centerY) * 5; // Max 5deg tilt
-        const rotateY = ((mouseX - centerX) / centerX) * 5; // Max 5deg tilt
-
-        // Apply slight tilt and background position shift for parallax feel
-        heroSection.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
-        heroSection.style.backgroundPositionX = `${50 + (mouseX - centerX) * 0.05}%`;
-        heroSection.style.backgroundPositionY = `${50 + (mouseY - centerY) * 0.05}%`;
+      // Target all sections for animation
+      document.querySelectorAll('section').forEach(section => {
+        section.style.opacity = '0'; // Initial state
+        observer.observe(section);
       });
-
-      heroSection.addEventListener('mouseleave', () => {
-        // Reset transform and background position on mouse leave
-        heroSection.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.05)';
-        heroSection.style.backgroundPosition = 'center';
-      });
-    }
-  });
-</script>
+    });
+  </script>
 </body>
+
 </html>
